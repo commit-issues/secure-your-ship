@@ -43,3 +43,39 @@
 .md-typeset h1 { display: none; }
 .md-content__inner h1 { display: none; }
 article h1 { display: none; }
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 32px 0 24px;
+  }
+  .hero-sidebar {
+    border-left: none !important;
+    border-top: 2px solid rgba(124,58,237,0.4);
+    padding-left: 0 !important;
+    padding-top: 28px;
+    width: 100%;
+  }
+  .audience-grid {
+    grid-template-columns: 1fr;
+  }
+  .learn-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .byline-strip {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .hero-ctas {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
