@@ -50,7 +50,7 @@ article h1 { display: none; }
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
-    padding: 32px 0 24px;
+    padding: 8px 0 24px;
   }
   .hero-sidebar {
     border-left: none !important;
@@ -72,10 +72,35 @@ article h1 { display: none; }
   .byline-strip {
     flex-wrap: wrap;
     gap: 6px;
+    margin-top: 8px;
+    margin-bottom: 8px;
   }
   .hero-ctas {
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .star-badge {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+  .star-text {
+    font-size: 10px;
+  }
+  .star-count {
+    font-size: 10px;
+  }
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  .md-header {
+    max-width: 100vw;
+  }
+  .md-footer {
+    max-width: 100vw;
+  }
+  .learn-title {
+    display: block;
   }
 }
-
