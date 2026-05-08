@@ -52,6 +52,7 @@ nav:
     - Git History Auditing: hardening/history.md
     - Day One Checklist: hardening/checklist.md
   - Writing Secure Code:
+    - Linux & the Command Line: code/linux.md
     - Vibe Coding & AI Dev: code/vibe-coding.md
     - Credential Management: code/credentials.md
     - Input Validation: code/input-validation.md
