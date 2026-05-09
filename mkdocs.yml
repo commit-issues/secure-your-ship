@@ -51,6 +51,7 @@ nav:
     - Advanced Security: hardening/advanced-security.md
     - Git History Auditing: hardening/history.md
     - Day One Checklist: hardening/checklist.md
+    - Org & Enterprise Security: hardening/org-security.md
   - Writing Secure Code:
     - Linux & the Command Line: code/linux.md
     - Vibe Coding & AI Dev: code/vibe-coding.md
