@@ -1,0 +1,2606 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A field guide for securing your GitHub presence, repositories, identity, and code.">
+      
+      
+        <meta name="author" content="SudoChef">
+      
+      
+        <link rel="canonical" href="https://commit-issues.github.io/secure-your-ship/hardening/org-security/">
+      
+      
+        <link rel="prev" href="../checklist/">
+      
+      
+        <link rel="next" href="../../code/linux/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Org & Enterprise Security - Secure Your Ship</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#github-organization-security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Secure Your Ship" class="md-header__button md-logo" aria-label="Secure Your Ship" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Secure Your Ship
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Org & Enterprise Security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="pink"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  The Mission
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/account/" class="md-tabs__link">
+          
+  
+  
+  Setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../settings/" class="md-tabs__link">
+          
+  
+  
+  Hardening Your Repo
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../code/linux/" class="md-tabs__link">
+          
+  
+  
+  Writing Secure Code
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../threats/osint/" class="md-tabs__link">
+          
+  
+  
+  Threats & Awareness
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../maintenance/freshness/" class="md-tabs__link">
+          
+  
+  
+  Maintenance
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Secure Your Ship" class="md-nav__button md-logo" aria-label="Secure Your Ship" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Secure Your Ship
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Mission
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing Your Account
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH Keys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/new-repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starting a New Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & Recovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardening Your Repo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hardening Your Repo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rulesets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Branch Protection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git History Auditing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day One Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Org & Enterprise Security
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Org & Enterprise Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-github-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is a GitHub Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-who-can-do-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles — Who Can Do What
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roles — Who Can Do What">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Owner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Member
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outside-collaborator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outside Collaborator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-permissions-the-setting-nobody-knows-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base Permissions — The Setting Nobody Knows Exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teams-why-they-exist-and-how-to-use-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teams — Why They Exist and How to Use Them
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inviting-access-doing-it-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inviting Access — Doing It Right
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revoking-access-the-part-everyone-gets-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revoking Access — The Part Everyone Gets Wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-keys-the-access-that-survives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy Keys — The Access That Survives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branch-protection-at-the-org-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Protection at the Org Level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#org-secrets-vs-repo-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Org Secrets vs Repo Secrets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repo-visibility-public-private-and-internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repo Visibility — Public, Private, and Internal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requiring-2fa-across-your-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requiring 2FA Across Your Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-audit-log-your-orgs-black-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Audit Log — Your Org's Black Box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leaked-credentials-in-org-repos-what-to-do-right-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leaked Credentials in Org Repos — What to Do Right Now
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-action-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Action Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing Secure Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Writing Secure Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux & the Command Line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/vibe-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vibe Coding & AI Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/input-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging & Auditing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/cron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron & Scheduled Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threats & Awareness
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Threats & Awareness
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/osint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSINT & Identity Leakage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/ai-attacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-Assisted Attacks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/forking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forking & Attribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/supply-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supply Chain Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/stolen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When Your Project Gets Stolen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/visibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repo Visibility & Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Maintenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/freshness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Freshness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup & Recovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/email/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/debt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Debt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/cron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron & Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../now-go-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Now Go Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-github-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is a GitHub Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-who-can-do-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles — Who Can Do What
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roles — Who Can Do What">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Owner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Member
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outside-collaborator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outside Collaborator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-permissions-the-setting-nobody-knows-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base Permissions — The Setting Nobody Knows Exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teams-why-they-exist-and-how-to-use-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teams — Why They Exist and How to Use Them
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inviting-access-doing-it-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inviting Access — Doing It Right
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revoking-access-the-part-everyone-gets-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revoking Access — The Part Everyone Gets Wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-keys-the-access-that-survives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy Keys — The Access That Survives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branch-protection-at-the-org-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Protection at the Org Level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#org-secrets-vs-repo-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Org Secrets vs Repo Secrets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repo-visibility-public-private-and-internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repo Visibility — Public, Private, and Internal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requiring-2fa-across-your-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requiring 2FA Across Your Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-audit-log-your-orgs-black-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Audit Log — Your Org's Black Box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leaked-credentials-in-org-repos-what-to-do-right-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leaked Credentials in Org Repos — What to Do Right Now
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-action-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Action Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="github-organization-security">GitHub Organization Security</h1>
+<blockquote>
+<p>This page is for anyone running or working inside a GitHub organization — developers, team leads, CTOs, and non-technical founders alike. You don't need to be technical to understand this. But you <em>do</em> need to understand it.</p>
+</blockquote>
+<hr />
+<div class="admonition abstract">
+<p class="admonition-title">TL;DR</p>
+<ul>
+<li>A GitHub Organization is not the same as a personal account — it's a shared workspace with its own security controls</li>
+<li>Owner access should be limited to 2-3 people maximum — never give it out casually</li>
+<li>Outside Collaborators are for contractors and freelancers — not full team members</li>
+<li>Revoking access when someone leaves is not automatic — you have to do it manually</li>
+<li>Deploy keys survive member removal — check them every time someone leaves</li>
+<li>The audit log exists and you should be checking it</li>
+</ul>
+</div>
+<hr />
+<h2 id="what-is-a-github-organization">What Is a GitHub Organization</h2>
+<p>If you have a personal GitHub account, you already know what that looks like — one user, your repos, your settings. A GitHub Organization is different. It's a shared account that a team, company, or project lives under. Instead of repos living under <code>github.com/yourname</code>, they live under <code>github.com/yourcompany</code>.</p>
+<p>Organizations give you things a personal account can't:</p>
+<ul>
+<li>Multiple owners and members with different permission levels</li>
+<li>Teams that map to your actual team structure</li>
+<li>Org-wide security settings that apply to every repo at once</li>
+<li>An audit log that tracks who did what and when</li>
+<li>Centralized billing, secrets management, and access control</li>
+</ul>
+<p><strong>This isn't just for big companies.</strong> If you're a solo founder hiring one developer from Fiverr to build a feature, you need a GitHub Organization. If you're a freelancer bringing in a subcontractor for one project, you need a GitHub Organization. The moment someone else touches your codebase, you need to control what they see, what they can push to, and what happens when the work is done. Organizations give you that control regardless of your company size.</p>
+<p><strong>Who needs a GitHub Organization:</strong></p>
+<ul>
+<li>Any company or startup with more than one developer</li>
+<li>Any open source project with multiple maintainers</li>
+<li>Any solo developer who plans to hire or collaborate</li>
+<li>Anyone hiring contractors, freelancers, or agency developers — even for a single project</li>
+</ul>
+<p>If you're building something that will eventually have a team, start the org now. Migrating repos from personal to org later is annoying. Starting right is free.</p>
+<p><strong>One important distinction:</strong> Your personal account still exists alongside the org. You use your personal account to log in and then act as a member or owner of the org. The org itself is a separate entity — it has its own settings, its own billing, its own security controls. Changes you make to your personal account settings don't automatically apply to the org.</p>
+<p><strong>GitHub pricing — what you need to know:</strong></p>
+<p>At the time of writing:</p>
+<ul>
+<li><strong>GitHub Free</strong> — basic org features, public repos, limited private repo features</li>
+<li><strong>GitHub Team</strong> — ~$4/user/month — unlocks most org security features, branch protection rulesets, required reviewers, and more. This is where most small teams should be.</li>
+<li><strong>GitHub Enterprise Cloud</strong> — ~$21/user/month — adds SAML SSO, audit log API access, advanced compliance controls, internal repo visibility, and enterprise-grade policy enforcement</li>
+<li><strong>GitHub Enterprise Server</strong> — ~$21/user/month — self-hosted version of Enterprise Cloud</li>
+</ul>
+<p>For most small to medium teams, <strong>GitHub Team</strong> gives you everything covered in this page. Enterprise features are called out specifically where they apply.</p>
+<hr />
+<h2 id="roles-who-can-do-what">Roles — Who Can Do What</h2>
+<p>This is the most confused topic in GitHub org management. Here's the plain English version.</p>
+<h3 id="owner">Owner</h3>
+<p>Full administrative access to everything. Can change org settings, add and remove members, delete repos, manage billing, and override any permission. This is the most powerful role in the org.</p>
+<p><strong>Rules:</strong>
+- Always have at least 2 owners and no more than 3 — you need a backup in case one account is compromised or locked out, but the fewer owners the smaller your attack surface
+- Owner access should never be given to contractors, freelancers, or temporary collaborators
+- Never give owner access casually — it's the keys to everything</p>
+<div class="admonition warning">
+<p class="admonition-title">If you are the sole owner of your org</p>
+<p>Create a completely separate personal GitHub account — not connected to your main email, not used for anything else — and add it as a second owner. Store those credentials securely and offline (a password manager or written down in a physically secure location). This is your break-glass account. If your primary account is ever compromised, hijacked, or locked out, you can still access and recover your org. A separate account that has never committed code and has no activity is far less likely to be targeted. This is not optional if you care about business continuity.</p>
+</div>
+<h3 id="member">Member</h3>
+<p>The default role for everyone on your team. Members can access repos based on the base permissions and team assignments you set. They can create repos, open issues, and collaborate — but they can't change org-level settings.</p>
+<p>This is the right role for: full-time employees, long-term collaborators, core team members.</p>
+<h3 id="outside-collaborator">Outside Collaborator</h3>
+<p>A person who has access to one or more specific repos but is <strong>not</strong> a member of the organization. They don't appear in your org's People tab as a member. They can't join teams. They can't see other org repos unless explicitly given access.</p>
+<p>This is the right role for:
+- Contractors and freelancers working on a specific project
+- Consultants brought in temporarily
+- Agency developers working on one repo
+- Anyone you want to give limited, scoped access without bringing into the full org</p>
+<div class="admonition warning">
+<p class="admonition-title">The most common mistake</p>
+<p>Making contractors full org Members instead of Outside Collaborators. A member can see all your org's repos (depending on base permissions), join teams, and has broader access than you probably intend. When the contract ends and you forget to remove them — and you will forget — they still have that access. Outside Collaborators are scoped to specific repos and are easier to clean up.</p>
+</div>
+<p><strong>Real world decision guide:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Who</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full-time employee</td>
+<td>Member</td>
+</tr>
+<tr>
+<td>Co-founder</td>
+<td>Owner or Member</td>
+</tr>
+<tr>
+<td>Long-term contractor (6+ months, core team)</td>
+<td>Member</td>
+</tr>
+<tr>
+<td>Freelancer on one project</td>
+<td>Outside Collaborator</td>
+</tr>
+<tr>
+<td>Agency developer</td>
+<td>Outside Collaborator</td>
+</tr>
+<tr>
+<td>Consultant reviewing code</td>
+<td>Outside Collaborator (Read only)</td>
+</tr>
+<tr>
+<td>Someone you're not sure about</td>
+<td>Outside Collaborator until you're sure</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to add an Outside Collaborator:</strong></p>
+<ol>
+<li>Go to the specific repo they need access to</li>
+<li><code>Settings → Collaborators and teams → Add people</code></li>
+<li>Search their GitHub username or email</li>
+<li>Select the permission level (Read, Triage, Write, Maintain, or Admin)</li>
+<li>Send the invite — they'll receive an email and must accept before access is granted</li>
+</ol>
+<p><strong>How to add an Org Member:</strong></p>
+<ol>
+<li><code>Your org → People → Invite member</code></li>
+<li>Search their GitHub username or email</li>
+<li>Select their role (Member or Owner)</li>
+<li>Send the invite — they accept via email</li>
+<li>After they join, add them to the appropriate teams</li>
+</ol>
+<p><strong>How to remove a Member before you need to:</strong></p>
+<p>Know this before you're in a hurry. When someone leaves:</p>
+<ol>
+<li><code>Your org → People</code></li>
+<li>Find the member</li>
+<li>Click the three dots (<code>...</code>) next to their name</li>
+<li>Select <code>Remove from organization</code></li>
+<li>Confirm — they lose org membership immediately</li>
+</ol>
+<p>Then go through each repo and check for any direct collaborator access they had outside of team membership. Teams are removed automatically — direct repo access is not always.</p>
+<hr />
+<h2 id="base-permissions-the-setting-nobody-knows-exists">Base Permissions — The Setting Nobody Knows Exists</h2>
+<p>Base permissions is an org-wide setting that controls the default level of access every member has to every repository in your org. Most organizations never change this from the default and end up either too permissive or confused about why people can see things they shouldn't.</p>
+<p><strong>Where to find it:</strong>
+<code>Your org → Settings → Member privileges → Base permissions</code></p>
+<p><strong>The options:</strong></p>
+<ul>
+<li><strong>No permission</strong> — members can only access repos they've been explicitly added to</li>
+<li><strong>Read</strong> — members can view and clone all repos (default on most orgs)</li>
+<li><strong>Write</strong> — members can push to all repos</li>
+<li><strong>Admin</strong> — members have admin access to all repos (almost never appropriate)</li>
+</ul>
+<p><strong>What to set it to:</strong></p>
+<p>For most small teams: <strong>Read</strong> is reasonable — people can see everything but can't push without explicit permission.</p>
+<p>For security-conscious orgs or orgs with sensitive IP: <strong>No permission</strong> — members only see what they're explicitly given access to.</p>
+<p>For any org: <strong>never Write or Admin</strong> as the base — that means every new member you add immediately has write or admin access to every repo in your org before you've intentionally given them anything.</p>
+<div class="admonition tip">
+<p class="admonition-title">For small companies and sole proprietors</p>
+<p>Set base permissions to <strong>No permission</strong> and assign access explicitly as needed. It takes a little more setup but means nobody ever accidentally has access to something you didn't intend. Every new hire, every contractor, every collaborator starts with nothing and gets only what they need for their specific role.</p>
+<p>If someone pushes back and demands higher access than their role requires — pause. Ask them to explain specifically why they need it. Document the reason. Legitimate contributors almost never need admin access to do their job. Someone who is insistent about needing elevated permissions without a clear technical reason is worth paying attention to. It may be nothing. It may not be. Either way, require them to show you exactly why the access is necessary before granting it. "I just work better with more access" is not a reason.</p>
+</div>
+<hr />
+<h2 id="teams-why-they-exist-and-how-to-use-them">Teams — Why They Exist and How to Use Them</h2>
+<p>A GitHub Team is a group of org members that you can assign permissions to collectively. Instead of adding five developers individually to twelve repos, you create a team, add the developers to the team, and give the team access to the repos. One change — everyone on the team gets it.</p>
+<p><strong>Why teams matter for security:</strong></p>
+<ul>
+<li>When someone joins, add them to the right teams and they have the right access automatically</li>
+<li>When someone leaves, remove them from all teams and their access disappears everywhere at once</li>
+<li>Teams map to your actual structure — <code>frontend</code>, <code>backend</code>, <code>devops</code>, <code>security</code></li>
+<li>Team access is auditable — you can see exactly which teams have access to which repos</li>
+</ul>
+<p><strong>The catch:</strong> Outside Collaborators cannot be added to teams. Teams are members only. If you have a contractor who needs access to multiple repos, you either make them a member (not recommended unless appropriate) or add them to each repo individually as an outside collaborator.</p>
+<p><strong>Creating a team:</strong>
+<code>Your org → Teams → New team</code></p>
+<p>Give it a name that matches your actual team structure. Add members. Then go to the repos that team needs and add the team with the appropriate permission level.</p>
+<hr />
+<h2 id="inviting-access-doing-it-right">Inviting Access — Doing It Right</h2>
+<p>When you invite someone to your org or a repo, think before you click.</p>
+<p><strong>For org membership:</strong>
+<code>Your org → People → Invite member</code></p>
+<p>Before sending the invite, decide:
+- Should this person be a Member or Outside Collaborator?
+- What teams should they be on?
+- What base permission will they inherit?
+- Is there anything they should explicitly NOT have access to?</p>
+<p><strong>For outside collaborators:</strong>
+<code>Repo → Settings → Collaborators and teams → Add people</code></p>
+<p>Add them directly at the repo level with the minimum permission they need:
+- Read — can view and clone
+- Triage — can manage issues without write access
+- Write — can push code
+- Maintain — project management without destructive actions
+- Admin — full repo control (almost never appropriate for outside collaborators)</p>
+<p><strong>Principle of least privilege:</strong> Give people the minimum access they need to do their job. You can always add more. Taking access away after the fact is awkward and often forgotten.</p>
+<hr />
+<h2 id="revoking-access-the-part-everyone-gets-wrong">Revoking Access — The Part Everyone Gets Wrong</h2>
+<p>Access revocation is where most organizations fail. Someone leaves the company or the contract ends, and in the chaos of transition, nobody removes their GitHub access. Weeks later they still have write access to your production codebase.</p>
+<p><strong>Removing a member:</strong>
+<code>Your org → People → click the member → Remove from organization</code></p>
+<p><strong>Removing an outside collaborator:</strong>
+<code>Repo → Settings → Collaborators and teams → remove them</code></p>
+<p>Or at the org level:
+<code>Your org → People → Outside collaborators → remove</code></p>
+<p><strong>What removal does:</strong>
+- Removes them from all teams
+- Removes their org membership
+- They lose access to private repos they had through team membership</p>
+<p><strong>What removal does NOT automatically do:</strong>
+- Remove deploy keys they added (more on this below)
+- Remove personal access tokens they created
+- Remove any GitHub Apps they authorized
+- Remove them from repos they were added to directly outside of team membership</p>
+<p><strong>Offboarding checklist — run this every time someone leaves:</strong></p>
+<ul>
+<li>[ ] Remove from organization or revoke outside collaborator access</li>
+<li>[ ] Check all repos for direct collaborator access and remove</li>
+<li>[ ] Audit and revoke any deploy keys they added</li>
+<li>[ ] Check for and rotate any org secrets they had access to</li>
+<li>[ ] Review recent audit log activity before removing</li>
+<li>[ ] Check for any GitHub Apps authorized under their account</li>
+<li>[ ] If they were an Owner, verify remaining owners and transfer if needed</li>
+</ul>
+<hr />
+<h2 id="deploy-keys-the-access-that-survives">Deploy Keys — The Access That Survives</h2>
+<p>This is one of the most overlooked security issues in GitHub org management and one of the most commonly asked about once something goes wrong.</p>
+<p>A deploy key is an SSH key added directly to a specific repository that grants read or write access to that repo. They're used for automated deployments — a server uses the deploy key to pull code without needing a user account.</p>
+<p><strong>The problem:</strong> Deploy keys are attached to the repo, not the person. When you remove a team member from your org, their deploy keys are NOT automatically removed. If they added a deploy key to a repo — either for legitimate automation or otherwise — that key continues to work indefinitely until someone manually removes it.</p>
+<p><strong>Where to check:</strong>
+<code>Repo → Settings → Deploy keys</code></p>
+<p>Every repo has its own deploy keys section. There is no org-wide view of all deploy keys across all repos. You have to check each repo individually.</p>
+<p><strong>After any team member departure:</strong>
+- Go through every repo they had access to
+- Check the deploy keys section
+- Remove any keys you don't recognize or that were added by that person
+- Rotate any secrets associated with automated deployments they managed</p>
+<hr />
+<h2 id="branch-protection-at-the-org-level">Branch Protection at the Org Level</h2>
+<p>If you haven't read the <a href="../rulesets/">Branch Protection →</a> section yet, head there first — it covers repo-level protection in detail. Then come back here for the org-level layer on top of it.</p>
+<p>You've probably seen branch protection at the repo level — requiring pull request reviews before merging, requiring status checks, blocking force pushes. What most people don't know is that you can enforce these rules across your entire organization at once using <strong>Rulesets</strong>.</p>
+<p><strong>Repo-level branch protection</strong> applies only to the repo you configure it on. Every new repo starts with no protection unless you manually add it.</p>
+<p><strong>Org-level Rulesets</strong> let you define rules that apply to all repos in the org — current and future — automatically.</p>
+<p><strong>Where to find it:</strong>
+<code>Your org → Settings → Rules → Rulesets</code></p>
+<p><strong>What to enforce org-wide:</strong></p>
+<ul>
+<li>Require pull request reviews before merging to <code>main</code></li>
+<li>Block force pushes to <code>main</code> and <code>production</code> branches</li>
+<li>Require signed commits (if you've set up commit signing)</li>
+<li>Require status checks to pass before merging</li>
+<li>Restrict who can push directly to protected branches</li>
+</ul>
+<p><strong>Why this matters:</strong> Without org-level rulesets, every new repo someone creates in your org has zero protection by default. A developer can push directly to main, force push over history, or merge without review. Org-level rules close that gap automatically.</p>
+<hr />
+<h2 id="org-secrets-vs-repo-secrets">Org Secrets vs Repo Secrets</h2>
+<p>GitHub Actions secrets let you store sensitive values — API keys, credentials, tokens — that your CI/CD workflows can access without exposing them in your code.</p>
+<p>There are two levels:</p>
+<p><strong>Repo secrets</strong> — stored on a specific repo, accessible only to workflows in that repo.</p>
+<p><code>Repo → Settings → Secrets and variables → Actions</code></p>
+<p><strong>Org secrets</strong> — stored at the org level, can be shared across multiple repos.</p>
+<p><code>Your org → Settings → Secrets and variables → Actions</code></p>
+<p>When you create an org secret you choose its scope:
+- <strong>All repositories</strong> — every repo in the org can access it
+- <strong>Private repositories</strong> — only private repos can access it
+- <strong>Selected repositories</strong> — only the specific repos you choose</p>
+<p><strong>Security considerations:</strong></p>
+<ul>
+<li>Don't use "All repositories" for sensitive secrets unless every repo genuinely needs them</li>
+<li>Rotate org secrets regularly and especially after any team member departure</li>
+<li>Use repo secrets for anything specific to one project</li>
+<li>Use org secrets for shared infrastructure credentials — deployment keys, notification services, shared API keys</li>
+</ul>
+<hr />
+<h2 id="repo-visibility-public-private-and-internal">Repo Visibility — Public, Private, and Internal</h2>
+<p>Every repo in your org has a visibility setting that controls who can see it.</p>
+<p><strong>Public</strong> — anyone on the internet can view the code, issues, and most repo content. They can't push without explicit permission, but they can read, fork, and clone freely.</p>
+<p>Use for: open source projects, public documentation, anything you intend to share with the world.</p>
+<p><strong>Private</strong> — only org members and outside collaborators explicitly added to the repo can see it.</p>
+<p>Use for: proprietary code, client work, internal tools, anything containing sensitive logic or credentials.</p>
+<p><strong>Internal</strong> <em>(GitHub Enterprise Cloud only)</em> — visible to all members of your enterprise (which can include multiple organizations) but not to the public. A middle ground between public and private for large organizations.</p>
+<p>Use for: shared internal libraries, internal documentation, tools used across multiple teams within a large company.</p>
+<p><strong>The right way to build — start private, go public deliberately:</strong></p>
+<p>Always start a new repo as private. Always. It costs nothing and protects everything. When you're ready to open source something or make it public, treat that transition as a security event — not a setting change.</p>
+<p>Before making any repo public, check:</p>
+<ul>
+<li><strong>Git history</strong> — run <code>git log</code> and look through commits for any hardcoded credentials, internal paths, employee names, client names, or anything that shouldn't be public. Private doesn't mean your history is clean. Every commit you ever made while the repo was private becomes public the moment you flip the switch.</li>
+<li><strong>Config files</strong> — check for any <code>.env</code> files, config files, or settings files that contain environment-specific values, internal URLs, or credentials. Even if they're in <code>.gitignore</code> now, check whether they were ever committed.</li>
+<li><strong>Comments and TODOs</strong> — developers leave internal notes in code comments. <code>// TODO: remove this before launch</code>, <code>// using prod API key here temporarily</code>. Search your codebase before going public.</li>
+<li><strong>Internal tooling</strong> — if you have scripts or tools that reference internal infrastructure, internal domains, or internal systems — remove or sanitize them before going public.</li>
+</ul>
+<p><strong>How to keep internal tooling private while going public with your product:</strong></p>
+<p>Split your repos intentionally. Your public-facing product repo goes public. Your internal tooling, deployment scripts, infrastructure code, and anything with internal architecture details stays private. They don't have to live in the same repo and they shouldn't.</p>
+<p><strong>IP Protection:</strong></p>
+<p>If you're building something proprietary — a product, a client deliverable, anything with commercial value — it should be in a private repo. Changing a repo from private to public is instant. Anything already indexed or cached by search engines, bots, or automated scanners before you change it back may already be out there. Treat visibility settings as a security control, not a convenience toggle.</p>
+<hr />
+<h2 id="requiring-2fa-across-your-organization">Requiring 2FA Across Your Organization</h2>
+<p>Two-factor authentication at the individual account level is covered in the <a href="../../setup/account/">Securing Your Account →</a> section. At the org level, you can require it for everyone.</p>
+<p><strong>Where to enable it:</strong>
+<code>Your org → Settings → Authentication security → Require two-factor authentication</code></p>
+<p><strong>What happens when you enable it:</strong></p>
+<ul>
+<li>All current members and outside collaborators who don't have 2FA enabled are immediately removed from the org</li>
+<li>They receive an email explaining why</li>
+<li>They can re-request access once they enable 2FA on their personal account</li>
+</ul>
+<p><strong>What this means for you:</strong></p>
+<p>Before enabling org-wide 2FA, communicate to your team. Give them a deadline to enable it. Check who has it enabled before flipping the switch — GitHub shows you this in the People tab.</p>
+<p><strong>GitHub accepts these 2FA methods (from strongest to weakest):</strong></p>
+<ul>
+<li><strong>Security key (hardware key)</strong> — a physical device like a YubiKey. Strongest option. Phishing-resistant.</li>
+<li><strong>Authenticator app (TOTP)</strong> — apps like Authy, Google Authenticator, or 1Password. Strong and practical for most teams.</li>
+<li><strong>SMS</strong> — a code sent to your phone number. Weakest option. Vulnerable to SIM-swapping attacks. Better than nothing, but encourage your team to use an authenticator app instead.</li>
+</ul>
+<p><strong>Outside collaborators:</strong> The 2FA requirement applies to them too. If they don't have it enabled, they lose access when you enable the requirement. Give outside collaborators notice before enabling.</p>
+<p><strong>Why this matters:</strong> A single compromised team member account with write access to your repos can push malicious code, exfiltrate your entire codebase, or destroy your git history. 2FA on every account in your org dramatically reduces that risk.</p>
+<hr />
+<h2 id="the-audit-log-your-orgs-black-box">The Audit Log — Your Org's Black Box</h2>
+<p>The audit log records every significant action taken in your organization. Most founders and even many developers don't know it exists. It's one of the most valuable security tools GitHub gives you for free.</p>
+<p><strong>Where to find it:</strong>
+<code>Your org → Settings → Logs → Audit log</code></p>
+<p><strong>What it records:</strong></p>
+<ul>
+<li>Who joined or left the org and when</li>
+<li>Permission changes — who was given what access to what</li>
+<li>Repo creation, deletion, visibility changes</li>
+<li>Branch protection rule changes</li>
+<li>Secret creation and access</li>
+<li>OAuth app authorizations</li>
+<li>Billing changes</li>
+<li>Failed authentication attempts</li>
+<li>Actions workflow runs and modifications</li>
+</ul>
+<p><strong>What a suspicious audit log entry looks like:</strong></p>
+<p>Here's an example of what you might see — and what it means:</p>
+<div class="highlight"><pre><span></span><code>2025-05-01 03:42:17 UTC  |  repo.add_member
+Actor: contractor_username
+Repo: yourorg/internal-payments-api
+Permission granted: admin
+</code></pre></div>
+<p>Three things wrong with this entry: it happened at 3am, a contractor was given admin access (not write — admin), and it was to your most sensitive repo. You didn't authorize this. That's the kind of entry that tells you something is wrong.</p>
+<p>Normal entries look like team leads adding developers during business hours with appropriate permission levels. Anything outside that pattern — unusual times, unusual actors, unusual permission escalations, repos changing visibility — warrants investigation.</p>
+<p><strong>When to check it:</strong></p>
+<ul>
+<li>When someone leaves the org — review their recent activity before removing access</li>
+<li>When you notice something unexpected — a commit you didn't expect, a setting that changed</li>
+<li>Regularly — monthly at minimum for any org with sensitive IP</li>
+<li>Immediately if you suspect unauthorized access</li>
+</ul>
+<p><strong>Audit log retention:</strong> GitHub retains audit log events for 180 days on free plans. GitHub Enterprise extends this. If you need longer retention, export the log regularly via the API.</p>
+<hr />
+<h2 id="leaked-credentials-in-org-repos-what-to-do-right-now">Leaked Credentials in Org Repos — What to Do Right Now</h2>
+<p>This happens. A developer commits a <code>.env</code> file, hardcodes an API key, or accidentally pushes credentials to a repo. If the repo is public, automated scanners will find it within minutes. If it's private, the risk is lower but still real.</p>
+<p><strong>Immediate steps — in this order:</strong></p>
+<ol>
+<li>
+<p><strong>Revoke the credential immediately</strong> — don't wait. Go to whatever service issued it and revoke or rotate it now. Removing it from the repo does not invalidate it.</p>
+</li>
+<li>
+<p><strong>Remove it from the repo</strong> — delete the file or the line containing the credential and push a new commit. This removes it from the current state of the repo.</p>
+</li>
+<li>
+<p><strong>Remove it from git history</strong> — the credential still exists in every previous commit. Use <code>git filter-repo</code> or GitHub's push protection to scrub it from history. This is a destructive operation — coordinate with your team before running it on a shared repo.</p>
+</li>
+<li>
+<p><strong>Check the audit log</strong> — look for any unusual API usage or access in the window between when the credential was committed and when you rotated it.</p>
+</li>
+<li>
+<p><strong>Enable push protection</strong> — GitHub's push protection scans for secrets before they're committed and blocks the push. Turn it on for every repo.
+<code>Repo → Settings → Code security → Push protection</code></p>
+</li>
+</ol>
+<p>Or enable it org-wide:
+<code>Your org → Settings → Code security → Push protection</code></p>
+<p><strong>For non-technical founders:</strong></p>
+<p>If someone tells you a key was leaked in your GitHub repo, the first question is: has it been rotated? Not removed from the repo — rotated at the source. That's the only thing that actually stops the exposure. Everything else is cleanup.</p>
+<hr />
+<h2 id="quick-action-checklist">Quick Action Checklist</h2>
+<p>A scannable reference for founders and team leads.</p>
+<p><strong>Before your first hire:</strong>
+- [ ] Create a GitHub Organization (don't use your personal account)
+- [ ] Set base permissions to Read or No permission
+- [ ] Create a backup owner account (separate personal account, stored securely)
+- [ ] Enable push protection org-wide
+- [ ] Decide: will contractors be Members or Outside Collaborators?</p>
+<p><strong>When setting up a new org:</strong>
+- [ ] Set base permissions to Read or No permission
+- [ ] Create teams that match your actual team structure
+- [ ] Require 2FA for all members
+- [ ] Enable push protection org-wide
+- [ ] Create an org-level ruleset for branch protection on main
+- [ ] Set at least two owners</p>
+<p><strong>When adding someone new:</strong>
+- [ ] Member or Outside Collaborator? (contractors → Outside Collaborator)
+- [ ] Add to appropriate teams only
+- [ ] Grant minimum access needed
+- [ ] Confirm 2FA is enabled on their account</p>
+<p><strong>When someone leaves:</strong>
+- [ ] Remove from org or revoke outside collaborator access
+- [ ] Check all repos for direct collaborator access
+- [ ] Audit deploy keys on all repos they had access to
+- [ ] Rotate any secrets they had access to
+- [ ] Review audit log for their recent activity
+- [ ] Verify remaining owners if they were an owner</p>
+<p><strong>Monthly:</strong>
+- [ ] Review the audit log for anything unexpected
+- [ ] Check the People tab for anyone who shouldn't still be there
+- [ ] Verify outside collaborators are still active and needed
+- [ ] Review org secrets and rotate anything old</p>
+<p><strong>After any incident:</strong>
+- [ ] Rotate all credentials that could have been exposed
+- [ ] Check audit log for the full scope of access
+- [ ] Review and tighten permissions based on what happened
+- [ ] Enable any missing protections before moving on</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © SudoChef — @sudochef — Build like you're the target. Because you are.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/commit-issues" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://instagram.com/sudochef" target="_blank" rel="noopener" title="instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

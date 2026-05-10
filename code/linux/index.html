@@ -1,0 +1,2618 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A field guide for securing your GitHub presence, repositories, identity, and code.">
+      
+      
+        <meta name="author" content="SudoChef">
+      
+      
+        <link rel="canonical" href="https://commit-issues.github.io/secure-your-ship/code/linux/">
+      
+      
+        <link rel="prev" href="../../hardening/org-security/">
+      
+      
+        <link rel="next" href="../vibe-coding/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Linux & the Command Line - Secure Your Ship</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-the-command-line-for-developers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Secure Your Ship" class="md-header__button md-logo" aria-label="Secure Your Ship" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Secure Your Ship
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linux & the Command Line
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="pink"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  The Mission
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/account/" class="md-tabs__link">
+          
+  
+  
+  Setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../hardening/settings/" class="md-tabs__link">
+          
+  
+  
+  Hardening Your Repo
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Writing Secure Code
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../threats/osint/" class="md-tabs__link">
+          
+  
+  
+  Threats & Awareness
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../maintenance/freshness/" class="md-tabs__link">
+          
+  
+  
+  Maintenance
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Secure Your Ship" class="md-nav__button md-logo" aria-label="Secure Your Ship" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Secure Your Ship
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Mission
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing Your Account
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH Keys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/new-repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starting a New Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & Recovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardening Your Repo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hardening Your Repo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardening/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardening/rulesets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Branch Protection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardening/advanced-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardening/history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git History Auditing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardening/checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day One Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardening/org-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Org & Enterprise Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing Secure Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Writing Secure Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux & the Command Line
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux & the Command Line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-terminal-why-you-hate-it-why-you-need-it-why-youll-love-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Terminal: Why You Hate It, Why You Need It, Why You'll Love It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-developers-actually-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Developers Actually Use It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-linux-and-why-do-developers-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is Linux — and Why Do Developers Use It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-the-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigating the Filesystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#things-nobody-tells-you-but-should" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things Nobody Tells You (But Should)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-env-file-what-it-is-and-how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The .env File — What It Is and How to Use It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions-quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Permissions Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#users-sudo-and-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Users, sudo, and Root
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-networking-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Networking Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processes-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processes and Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual Environments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ricing-your-terminal-making-it-yours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ricing Your Terminal — Making It Yours
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vibe-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vibe Coding & AI Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging & Auditing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron & Scheduled Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threats & Awareness
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Threats & Awareness
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/osint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSINT & Identity Leakage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/ai-attacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-Assisted Attacks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/forking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forking & Attribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/supply-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supply Chain Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/stolen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When Your Project Gets Stolen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threats/visibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repo Visibility & Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Maintenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/freshness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Freshness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup & Recovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/email/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/debt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Debt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/cron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron & Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance/notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../now-go-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Now Go Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-terminal-why-you-hate-it-why-you-need-it-why-youll-love-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Terminal: Why You Hate It, Why You Need It, Why You'll Love It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-developers-actually-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Developers Actually Use It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-linux-and-why-do-developers-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is Linux — and Why Do Developers Use It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-the-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigating the Filesystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#things-nobody-tells-you-but-should" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things Nobody Tells You (But Should)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-env-file-what-it-is-and-how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The .env File — What It Is and How to Use It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions-quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Permissions Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#users-sudo-and-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Users, sudo, and Root
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-networking-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Networking Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processes-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processes and Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual Environments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ricing-your-terminal-making-it-yours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ricing Your Terminal — Making It Yours
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux-the-command-line-for-developers">Linux &amp; the Command Line for Developers</h1>
+<blockquote>
+<p>Whether you're running Linux natively, using macOS, or working in WSL on Windows — this is the foundation you need. Most servers run Linux. Most security tools are built for Linux. And once you understand it, everything else clicks.</p>
+</blockquote>
+<hr />
+<div class="admonition abstract">
+<p class="admonition-title">TL;DR</p>
+<ul>
+<li>macOS and Linux share the same Unix DNA — most commands are identical</li>
+<li>The terminal is not scary. It's faster, more powerful, and more transparent than any GUI</li>
+<li>File permissions aren't optional — they're your first line of defense</li>
+<li>Never run as root. Never install packages globally. Never skip the firewall.</li>
+<li>Virtual environments are not optional for Python development</li>
+</ul>
+</div>
+<hr />
+<h2 id="the-terminal-why-you-hate-it-why-you-need-it-why-youll-love-it">The Terminal: Why You Hate It, Why You Need It, Why You'll Love It</h2>
+<p>Let's be honest. When most people see a terminal for the first time, their reaction is somewhere between confusion and mild disgust. It's a black box with a blinking cursor. No buttons. No icons. No visual feedback. You can't see your project taking shape. You can't watch a file render as you edit it. You can't drag and drop something into a satisfying folder. You type into the void and hope something happens.</p>
+<p>And compared to a GUI? The contrast is brutal.</p>
+<p>A GUI — graphical user interface, meaning any tool with a visual interface like VS Code's file explorer, GitHub Desktop, Finder, or even Excel — gives you something the terminal fundamentally doesn't: <strong>you can see what you're doing</strong>. Nobody wants an ugly spreadsheet of raw numbers when they could have a beautiful chart. Think about the difference between staring at rows of data versus seeing it transformed into a bar chart, a line graph, a pie chart, a scatter plot, a heatmap, a waterfall chart, a treemap — something that makes the data make sense at a glance. GUIs build trust. They give you guardrails. They show you your project as it's being built.</p>
+<p>The terminal gives you none of that comfort.</p>
+<p><strong>The real complaints — and they're all valid:</strong></p>
+<ul>
+<li>You can't see your project while you're working in it</li>
+<li>You have to memorize commands instead of clicking menus</li>
+<li>One typo and everything breaks — sometimes silently</li>
+<li>You have to know the exact path you're in at all times (<code>pwd</code> becomes your best friend out of necessity)</li>
+<li>No undo button. No "are you sure?" Most of the time.</li>
+<li>Error messages that read like they were written by someone who hates you</li>
+<li>It looks ugly. A wall of white text on black feels like 1995.</li>
+<li>You feel stupid — like everyone else knows something you don't</li>
+</ul>
+<p>Every single one of these complaints is legitimate. Nobody is going to tell you the terminal is intuitive, because it isn't. It was designed by engineers for engineers, before visual interfaces existed, and it never had to compete for your affection.</p>
+<p><strong>But here's the truth: it's an evil necessity.</strong></p>
+<p>Whether you're a student, building apps as a side hustle, vibe coding your way through a project, or working toward a career in tech — the terminal is going to show up. Every deployment tool uses it. Every server runs on it. Every serious development workflow eventually touches it. The question isn't whether you'll use it. The question is whether you'll be comfortable when you do.</p>
+<hr />
+<h2 id="why-developers-actually-use-it">Why Developers Actually Use It</h2>
+<p>Here's what changes once you get past the learning curve.</p>
+<p>The terminal is <strong>faster</strong>. Not marginally — dramatically. A task that takes four clicks through a GUI, waiting for a window to load, navigating a menu, clicking confirm — takes one command in a terminal. Developers who work in terminals aren't masochists. They're optimizing.</p>
+<p>The terminal is <strong>precise</strong>. When you click a button in a GUI, you're trusting that button does exactly what the label says. In a terminal, you see the exact command being executed. There's no abstraction layer hiding what's actually happening to your files, your server, your database.</p>
+<p>The terminal is <strong>scriptable</strong>. You can automate repetitive tasks, chain commands together, write scripts that run at 3am without you touching anything. GUIs can't do this. This is why every DevOps role, every cloud platform, every CI/CD pipeline, every security tool is built around the command line. Businesses aren't requiring terminal skills to be difficult — they're requiring them because automation at scale is impossible without them.</p>
+<p>The terminal is <strong>universal</strong>. The same commands that work on your local Linux machine work on a server in a data center in another country. The same commands work in Docker containers, in cloud shells, in CI pipelines. GUIs are platform-specific. The terminal is everywhere.</p>
+<p><strong>Think about it like this:</strong> In gaming, there's a long-running debate — console controller vs keyboard and mouse. Console players have the comfort, the familiarity, the ease of picking up and playing. But in competitive gaming, keyboard and mouse players almost universally outperform console players. The precision of a mouse versus a thumbstick. The speed of keyboard shortcuts versus button combinations. The ability to rebind every key to exactly what makes sense for you. It's not that controllers are bad — it's that once you invest in the higher-precision tool and learn it, you don't go back. The terminal is keyboard and mouse. GUIs are the controller.</p>
+<p>You will get used to it. Then one day you'll open a GUI tool to do something simple and think — <em>why is this so slow?</em> That's when you know it clicked.</p>
+<p>And yes — you can make it look good too. We'll get to that. <a href="#ricing-your-terminal--making-it-yours">Jump to Ricing Your Terminal →</a></p>
+<hr />
+<h2 id="what-is-linux-and-why-do-developers-use-it">What Is Linux — and Why Do Developers Use It</h2>
+<p>Linux is an open-source operating system that powers the majority of the world's servers, cloud infrastructure, and security tools. When you deploy an app to AWS, DigitalOcean, or any VPS — you're almost certainly deploying to Linux.</p>
+<p><strong>macOS and Linux share the same DNA.</strong> macOS is built on Unix (specifically BSD Unix). Linux is Unix-like, built to follow the same POSIX standards. This means the two operating systems behave almost identically at the command line. If you learned something on a Mac, it almost certainly works on Linux. If it doesn't, there's usually a one-line workaround.</p>
+<p>This is one of the main reasons developers prefer Mac over Windows — the terminal behavior translates directly to production servers.</p>
+<p><strong>What about Windows?</strong> Windows has WSL — Windows Subsystem for Linux. It lets you run a full Linux environment (Ubuntu, Debian, etc.) directly inside Windows without a virtual machine. If you're on Windows, WSL is how you access everything covered in this page.</p>
+<p><strong>What about running Kali or other Linux distros?</strong></p>
+<p>If you're learning security, pentesting, or just want to experiment with a different Linux distribution without touching your main machine — this is where <strong>virtual machines</strong> come in.</p>
+<p>A virtual machine (VM) is exactly what it sounds like: a virtual computer running inside your real computer. Think of it like running a completely separate laptop inside a window on your screen. It has its own operating system, its own files, its own settings — completely isolated from your main machine. If you break something inside the VM, your real computer is fine. If you get a virus inside the VM, it stays there. It's a sandbox.</p>
+<p>This is why security students and researchers run Kali Linux (a security-focused Linux distro loaded with tools) in a VM on their Mac or Windows machine. You get the full Linux environment without risking your main setup.</p>
+<p>Popular VM software:</p>
+<ul>
+<li><strong>VirtualBox</strong> — free, open source, runs on Mac and Windows</li>
+<li><strong>VMware Fusion</strong> (Mac) / <strong>VMware Workstation</strong> (Windows) — more polished, free tier available</li>
+<li><strong>Parallels</strong> (Mac only) — fastest option for Mac, paid</li>
+</ul>
+<hr />
+<h2 id="navigating-the-filesystem">Navigating the Filesystem</h2>
+<p>Think of the filesystem like Windows Explorer or Mac Finder — the thing you use to click through folders and files. The terminal does the exact same thing, just with commands instead of clicks.</p>
+<p>A <strong>directory</strong> is just a folder. Same concept as a folder on your desktop — you can put files in it, create more folders inside it, move things in and out. The only difference is you're doing it by typing instead of clicking.</p>
+<p>A <strong>file path</strong> is the address of a file or folder on your system. Just like a street address tells you exactly where a house is, a file path tells your computer exactly where a file lives. For example:</p>
+<div class="highlight"><pre><span></span><code>/Users/youruser/projects/myapp/app.py
+</code></pre></div>
+<p>That reads left to right: start at the root of the system (<code>/</code>), go into <code>Users</code>, then <code>youruser</code>, then <code>projects</code>, then <code>myapp</code>, and the file is <code>app.py</code>.</p>
+<p><strong>Your home directory</strong> is your personal folder — the place the terminal drops you when you open it. On Linux it's <code>/home/youruser/</code>. On macOS it's <code>/Users/youruser/</code>. The shortcut for it is always <code>~</code> on both systems. So <code>~/projects</code> means "the projects folder inside my home directory" — no matter whose machine you're on.</p>
+<p>These commands are <strong>identical on both Linux and macOS</strong>:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w">              </span><span class="c1"># list files and folders in current directory</span>
+ls<span class="w"> </span>-la<span class="w">          </span><span class="c1"># list everything including hidden files, with permissions</span>
+<span class="nb">cd</span><span class="w"> </span>~/projects<span class="w">   </span><span class="c1"># move into a directory (folder)</span>
+<span class="nb">cd</span><span class="w"> </span>..<span class="w">           </span><span class="c1"># go up one level (back to the parent folder)</span>
+<span class="nb">pwd</span><span class="w">             </span><span class="c1"># print working directory — &quot;where am I right now?&quot;</span>
+mkdir<span class="w"> </span>myproject<span class="w"> </span><span class="c1"># create a new directory (folder)</span>
+touch<span class="w"> </span>app.py<span class="w">    </span><span class="c1"># create an empty file</span>
+cat<span class="w"> </span>file.txt<span class="w">    </span><span class="c1"># print the contents of a file to the screen</span>
+cp<span class="w"> </span>file.txt<span class="w"> </span>backup.txt<span class="w">      </span><span class="c1"># copy a file</span>
+mv<span class="w"> </span>file.txt<span class="w"> </span>../file.txt<span class="w">     </span><span class="c1"># move or rename a file</span>
+rm<span class="w"> </span>file.txt<span class="w">                 </span><span class="c1"># delete a file</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">rm -rf — Read This Before You Ever Run It</p>
+<p><code>rm</code> deletes files. <code>-r</code> means recursive — delete everything inside a folder too. <code>-f</code> means force — no confirmation, no warnings, no second chances.</p>
+<p>Put them together: <code>rm -rf</code> deletes a folder and absolutely everything inside it, instantly, permanently, with no undo.</p>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>/<span class="w">        </span><span class="c1"># deletes your entire system. yes, everything.</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>~/<span class="w">       </span><span class="c1"># deletes your entire home directory. all your files. gone.</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>./<span class="w">       </span><span class="c1"># deletes everything in the current directory</span>
+</code></pre></div>
+<p>There is no Trash. There is no Ctrl+Z. There is no recovery without a backup. This command has ended careers, wiped servers, and destroyed projects. Always double-check what directory you're in (<code>pwd</code>) before running any <code>rm -rf</code> command. Always.</p>
+</div>
+<p><strong>Where things live — Linux vs macOS:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>What it is</th>
+<th>Linux</th>
+<th>macOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home folder</td>
+<td>Your personal space</td>
+<td><code>/home/youruser/</code></td>
+<td><code>/Users/youruser/</code></td>
+</tr>
+<tr>
+<td>System config</td>
+<td>System-wide settings files</td>
+<td><code>/etc/</code></td>
+<td><code>/etc/</code> (same)</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td>System and app log files</td>
+<td><code>/var/log/</code></td>
+<td><code>/var/log/</code> (same)</td>
+</tr>
+<tr>
+<td>Temp files</td>
+<td>Temporary files, cleared on reboot</td>
+<td><code>/tmp/</code></td>
+<td><code>/tmp/</code> (same)</td>
+</tr>
+<tr>
+<td>Installed programs</td>
+<td>Where software lives</td>
+<td><code>/usr/bin/</code></td>
+<td><code>/usr/local/bin/</code></td>
+</tr>
+<tr>
+<td>macOS only</td>
+<td>Apple system files</td>
+<td>—</td>
+<td><code>/System/</code>, <code>/Library/</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>~</code> symbol always means your home directory on both systems. When you see a path starting with <code>~</code>, it's personal to whoever is logged in.</p>
+<hr />
+<h2 id="things-nobody-tells-you-but-should">Things Nobody Tells You (But Should)</h2>
+<p><strong>A note before we go further.</strong></p>
+<p>This guide isn't for the computer science grads or the seasoned security engineers. They already know this. And honestly? Most of them aren't going to teach you it either — not because they're bad people, but because that's just not how tech works. You'll get a link to a Stack Overflow thread. You'll get told to "just Google it." You'll sit in a class where the professor assumes you already know what a shell is. You'll watch a YouTube tutorial where the guy opens a terminal and starts typing like you're supposed to know what any of it means.</p>
+<p>It's not malicious. It's just that most people in tech learned by doing — by breaking things, Googling the error, fixing it, breaking it again. 90% of what experienced developers know came from research, not a classroom. That's still the gold standard. But nobody hands you the starting point.</p>
+<p>That's why I'm here. This section is the stuff nobody shows you. The commands that make you feel stupid when you don't know them and obvious once you do. The things that would have saved you three hours of frustration if someone had just said it out loud.</p>
+<p>Don't give up. You're not behind. You just haven't been shown yet.</p>
+<hr />
+<p><strong><code>man</code> — the manual that's always there</strong></p>
+<p>Every command on Linux and macOS has a built-in manual. Most people don't know this exists. Type <code>man</code> followed by any command and it shows you exactly what it does and every option available:</p>
+<div class="highlight"><pre><span></span><code>man<span class="w"> </span>ls<span class="w">        </span><span class="c1"># full manual for ls</span>
+man<span class="w"> </span>chmod<span class="w">     </span><span class="c1"># full manual for chmod</span>
+man<span class="w"> </span>grep<span class="w">      </span><span class="c1"># full manual for grep</span>
+</code></pre></div>
+<p>Press <code>q</code> to exit the manual. You now never have to Google basic command syntax again.</p>
+<hr />
+<p><strong><code>clear</code> — clean your screen</strong></p>
+<p>Your terminal is cluttered with output from the last ten commands. Type <code>clear</code> and it wipes the screen. That's it. <code>Ctrl + L</code> does the same thing faster.</p>
+<hr />
+<p><strong><code>whoami</code> — who are you running as</strong></p>
+<div class="highlight"><pre><span></span><code>whoami
+</code></pre></div>
+<p>Prints your current username. Sounds trivial. Becomes critical when you're using <code>sudo</code> and need to confirm whether you're running as yourself or as root. Good habit to check before running anything sensitive.</p>
+<hr />
+<p><strong>Tab completion — the thing that will save you</strong></p>
+<p>Press <code>Tab</code> while typing a command or file path and the terminal will autocomplete it for you. If there are multiple options, press <code>Tab</code> twice and it shows you all of them. This works for commands, file names, folder names, everything.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/pro<span class="o">[</span>TAB<span class="o">]</span><span class="w">     </span><span class="c1"># autocompletes to cd ~/projects if that&#39;s the only match</span>
+</code></pre></div>
+<p>Once you start using Tab completion you will never stop. It also prevents typos — if Tab won't complete it, the path doesn't exist.</p>
+<hr />
+<p><strong>The up arrow — your command history</strong></p>
+<p>Press the up arrow key in your terminal and it cycles through your previous commands. Press it again for the one before that. You never have to retype a long command — just arrow up and hit Enter.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">history</span><span class="w">           </span><span class="c1"># shows your full command history with numbers</span>
+!42<span class="w">               </span><span class="c1"># re-runs command number 42 from your history</span>
+</code></pre></div>
+<hr />
+<p><strong><code>echo</code> — printing to the screen</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello world&quot;</span><span class="w">             </span><span class="c1"># prints Hello world</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$HOME</span><span class="w">                     </span><span class="c1"># prints your home directory path</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;API_KEY=abc123&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.env<span class="w">  </span><span class="c1"># appends a line to a file</span>
+</code></pre></div>
+<p>You'll see <code>echo</code> constantly in tutorials and scripts. It prints text to the terminal or writes it to a file. It's also how you check what a variable contains.</p>
+<hr />
+<p><strong><code>grep</code> — finding things</strong></p>
+<p><code>grep</code> searches for text inside files or filters the output of other commands. You will use this constantly:</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span><span class="s2">&quot;password&quot;</span><span class="w"> </span>config.txt<span class="w">        </span><span class="c1"># find lines containing &quot;password&quot; in a file</span>
+grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;API_KEY&quot;</span><span class="w"> </span>./<span class="w">              </span><span class="c1"># search recursively through all files in a folder</span>
+ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>python<span class="w">              </span><span class="c1"># show only running processes that mention python</span>
+cat<span class="w"> </span>.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>SECRET<span class="w">            </span><span class="c1"># find lines in .env containing SECRET</span>
+</code></pre></div>
+<p>That <code>|</code> symbol is called a <strong>pipe</strong>. It takes the output of one command and feeds it as input to the next. <code>ps aux</code> lists all processes. <code>grep python</code> filters that list to only lines containing "python." Chain as many commands together as you need.</p>
+<hr />
+<p><strong><code>nano</code> vs <code>vim</code> — terminal text editors</strong></p>
+<p>Sometimes you need to edit a file directly in the terminal — a config file on a server, a cron job, a system setting. Two editors come up constantly:</p>
+<ul>
+<li><strong><code>nano</code></strong> — simple, beginner-friendly. Opens a file, you type, <code>Ctrl + S</code> to save, <code>Ctrl + X</code> to exit. Use this.</li>
+<li><strong><code>vim</code></strong> — powerful, extremely fast once you know it, deeply confusing until you do. If you accidentally open vim and can't exit: press <code>Esc</code>, then type <code>:q!</code> and hit Enter. That's it. You're welcome.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>config.txt<span class="w">     </span><span class="c1"># open a file in nano</span>
+vim<span class="w"> </span>config.txt<span class="w">      </span><span class="c1"># open a file in vim (only if you know what you&#39;re doing)</span>
+</code></pre></div>
+<p>"How do I exit vim" is genuinely one of the most Googled questions in programming history. Now you know.</p>
+<hr />
+<h2 id="file-permissions">File Permissions</h2>
+<p>Every file on Linux and macOS has permissions that control who can read it, change it, or run it. This is identical on both systems and it matters enormously for security.</p>
+<p><strong><code>r</code>, <code>w</code>, <code>x</code> — what they actually mean:</strong></p>
+<ul>
+<li><strong><code>r</code> (read)</strong> — you can open and read the file. For a directory, you can list what's inside it.</li>
+<li><strong><code>w</code> (write)</strong> — you can modify the file, save changes, or delete it. For a directory, you can create or delete files inside it.</li>
+<li><strong><code>x</code> (execute)</strong> — you can run the file as a program or script. For a directory, you can enter it with <code>cd</code>. Without <code>x</code> on a directory, you can't go inside it even if you have <code>r</code>.</li>
+</ul>
+<p>When you run <code>ls -la</code> you'll see something like:</p>
+<div class="highlight"><pre><span></span><code>-rwxr-xr-- 1 youruser staff 4096 May 1 12:00 script.sh
+</code></pre></div>
+<p>Breaking that down:</p>
+<div class="highlight"><pre><span></span><code>- rwx r-x r--
+│ │   │   └── others (everyone else): read only
+│ │   └────── group (your team): read and execute
+│ └────────── owner (you): read, write, and execute
+└──────────── file type: - means file, d means directory
+</code></pre></div>
+<p>In plain English for that example: you can read, edit, and run this file. People in your group can read and run it but not edit it. Everyone else can only read it.</p>
+<p>A <code>-</code> in any position means that permission is missing. <code>r--</code> means read only. <code>---</code> means no access at all.</p>
+<hr />
+<p><strong><code>chmod</code> — changing permissions</strong></p>
+<p><code>chmod</code> stands for "change mode." It's the command you use to set who can do what with a file. You'll use it constantly — especially to lock down files that contain secrets.</p>
+<p>The numbers work like this: each permission has a value. <code>r</code> = 4, <code>w</code> = 2, <code>x</code> = 1. Add them together for each group:</p>
+<ul>
+<li><code>7</code> = 4+2+1 = read, write, execute</li>
+<li><code>6</code> = 4+2 = read, write</li>
+<li><code>5</code> = 4+1 = read, execute</li>
+<li><code>4</code> = read only</li>
+<li><code>0</code> = no access</li>
+</ul>
+<p>Three digits = owner, group, others. So <code>chmod 600</code> means owner gets read+write (6), group gets nothing (0), others get nothing (0).</p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.env<span class="w">          </span><span class="c1"># only you can read or write — use this for ALL secret files</span>
+chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>script.sh<span class="w">     </span><span class="c1"># only you can read, write, and run this script</span>
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>script.sh<span class="w">     </span><span class="c1"># you have full access, others can read and run but not edit</span>
+chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">755</span><span class="w"> </span>folder/<span class="w">    </span><span class="c1"># apply permissions recursively to everything in a folder</span>
+chown<span class="w"> </span>youruser<span class="w"> </span>file.txt<span class="w"> </span><span class="c1"># change who owns a file</span>
+</code></pre></div>
+<p><strong>When to use what:</strong></p>
+<ul>
+<li><code>.env</code> files, private keys, credentials → always <code>chmod 600</code></li>
+<li>Scripts you want to run → <code>chmod 700</code> (private) or <code>chmod 755</code> (shared)</li>
+<li>Public web files → <code>chmod 644</code> or <code>chmod 755</code></li>
+</ul>
+<hr />
+<h2 id="the-env-file-what-it-is-and-how-to-use-it">The <code>.env</code> File — What It Is and How to Use It</h2>
+<p>Before we talk about securing your <code>.env</code> file, you need to know what it actually is — because most tutorials assume you already know and skip right over it.</p>
+<p>A <code>.env</code> file is a plain text file that stores <strong>environment variables</strong> — key-value pairs that your app reads at runtime instead of having sensitive values hardcoded in your code.</p>
+<p>Instead of writing this in your code:
+<div class="highlight"><pre><span></span><code><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;sk-abc123supersecretkey&quot;</span>
+</code></pre></div></p>
+<p>You write this in your <code>.env</code> file:
+<div class="highlight"><pre><span></span><code>API_KEY=sk-abc123supersecretkey
+DATABASE_URL=postgresql://localhost/mydb
+SECRET_KEY=somethingveryrandom
+</code></pre></div></p>
+<p>And then your code reads it like this (Python example):
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;API_KEY&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Why this matters:</strong> If your API key is hardcoded in your code and you push to GitHub, it's exposed to the entire internet. If it's in a <code>.env</code> file that's listed in <code>.gitignore</code>, it never leaves your machine.</p>
+<p><strong>How to create one:</strong></p>
+<div class="highlight"><pre><span></span><code>touch<span class="w"> </span>.env<span class="w">              </span><span class="c1"># create an empty .env file</span>
+nano<span class="w"> </span>.env<span class="w">               </span><span class="c1"># open it and add your variables</span>
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.env<span class="w">          </span><span class="c1"># lock it down immediately</span>
+</code></pre></div>
+<p><strong>What goes in <code>.gitignore</code>:</strong></p>
+<div class="highlight"><pre><span></span><code>.env
+*.env
+.env.local
+.env.production
+</code></pre></div>
+<p><strong>The dot at the start of <code>.env</code> means it's a hidden file.</strong> On Linux and macOS, any file starting with <code>.</code> is hidden by default — it won't show up in <code>ls</code>, only in <code>ls -la</code>. This is intentional. Your secrets should be quiet.</p>
+<div class="admonition warning">
+<p class="admonition-title">Never commit your .env file</p>
+<p>GitHub has seen millions of accidentally committed <code>.env</code> files. API keys, database passwords, secret tokens — all public, all exploitable within minutes by automated scanners. Add it to <code>.gitignore</code> before your first commit. Not after.</p>
+</div>
+<hr />
+<h2 id="file-permissions-quick-reference">File Permissions Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chmod 600 .env</code></td>
+<td>Owner read/write only — use for secrets</td>
+</tr>
+<tr>
+<td><code>chmod 700 script.sh</code></td>
+<td>Owner only, full access</td>
+</tr>
+<tr>
+<td><code>chmod 755 script.sh</code></td>
+<td>Owner full, others read/execute</td>
+</tr>
+<tr>
+<td><code>chmod -R 755 folder/</code></td>
+<td>Apply recursively to folder</td>
+</tr>
+<tr>
+<td><code>chown user file</code></td>
+<td>Change file owner</td>
+</tr>
+<tr>
+<td><code>ls -la</code></td>
+<td>See permissions on all files</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="users-sudo-and-root">Users, sudo, and Root</h2>
+<p>Before we get into users and sudo, two terms show up constantly that nobody explains to beginners — shell and SSH.</p>
+<p>A <strong>shell</strong> is the program that runs inside your terminal and interprets the commands you type. Think of it like a window — you're on one side giving instructions, and the operating system is the contractor on the other side doing the actual work. The shell sits between you and passes your commands through. The most common shells are <strong>Bash</strong> (default on most Linux) and <strong>Zsh</strong> (default on macOS since 2019). When someone says "run this in your shell" they just mean: open your terminal and type it.</p>
+<p><strong>SSH (Secure Shell)</strong> is how you connect to another computer securely over a network — a remote server, a VPS, a cloud machine. It's encrypted so nobody can snoop on what you're sending. It uses key pairs to authenticate you — if you haven't set those up yet, the <a href="../../setup/ssh/">SSH Keys →</a> section covers it and is worth reading before you manage any remote servers. <code>sshd</code> is the background service on a server that listens for incoming SSH connections, and its config file at <code>/etc/ssh/sshd_config</code> is where you control who can connect and how.</p>
+<hr />
+<p><strong>Root</strong> is the superuser account on Linux and macOS — it has unrestricted access to everything on the system. No file is off limits. No permission can stop it. You should never run your day-to-day work as root.</p>
+<p><strong>sudo</strong> lets you run a single command with root privileges without being root:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w">        </span><span class="c1"># run this command as root, just this once</span>
+sudo<span class="w"> </span>nano<span class="w"> </span>/etc/hosts<span class="w">   </span><span class="c1"># edit a system file that requires root access</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Fun fact</p>
+<p>The name SudoChef isn't an accident. <code>sudo</code> is the command that says "I'm running this as the boss." <code>sudo</code> literally means "superuser do." So SudoChef = superuser chef. Someone who can run root whenever they want. Let me cook — I run it all, in the kitchen and on the command line.</p>
+</div>
+<p>On macOS, <code>sudo</code> works identically. The difference is that macOS has System Integrity Protection (SIP) which blocks certain system directories even from root — a security layer Linux doesn't have by default.</p>
+<p><strong>The sudoers file</strong> controls who can use sudo and what they can do with it. It lives at <code>/etc/sudoers</code> and should <strong>only ever</strong> be edited with <code>visudo</code> — a special editor that validates the file before saving, so you can't accidentally lock yourself out:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>visudo<span class="w">   </span><span class="c1"># the only safe way to edit sudoers — never edit it directly</span>
+</code></pre></div>
+<p>A safe sudoers entry looks like:
+<div class="highlight"><pre><span></span><code>youruser ALL=(ALL) ALL
+</code></pre></div></p>
+<p>A dangerous one looks like:
+<div class="highlight"><pre><span></span><code>youruser ALL=(ALL) NOPASSWD: ALL   # never do this — no password required for anything
+</code></pre></div></p>
+<p><strong>Disabling root login over SSH</strong> is a standard server hardening step. On a Linux server, open the SSH daemon config:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
+</code></pre></div>
+<p>Find this line and set it to <code>no</code>:
+<div class="highlight"><pre><span></span><code>PermitRootLogin no
+</code></pre></div></p>
+<p>Then restart the SSH service:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>sshd
+</code></pre></div></p>
+<p>This means even if someone gets your root password, they can't log directly into your server as root over SSH. They'd need a regular user account first.</p>
+<p>To lock the root account locally on Linux:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>passwd<span class="w"> </span>-l<span class="w"> </span>root
+</code></pre></div></p>
+<hr />
+<h2 id="basic-networking-commands">Basic Networking Commands</h2>
+<p>These help you understand what's happening on your network and are essential for security work:</p>
+<div class="highlight"><pre><span></span><code>ping<span class="w"> </span>google.com<span class="w">              </span><span class="c1"># test if a host is reachable</span>
+curl<span class="w"> </span>https://example.com<span class="w">     </span><span class="c1"># fetch a URL — see the raw response</span>
+wget<span class="w"> </span>https://example.com/file.zip<span class="w">  </span><span class="c1"># download a file</span>
+</code></pre></div>
+<p><strong>Checking open ports and connections:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Linux</span>
+ss<span class="w"> </span>-tulnp<span class="w">          </span><span class="c1"># show all open ports and what&#39;s listening on them</span>
+netstat<span class="w"> </span>-tulnp<span class="w">     </span><span class="c1"># older equivalent, still works on most systems</span>
+
+<span class="c1"># macOS</span>
+netstat<span class="w"> </span>-an<span class="w">        </span><span class="c1"># macOS still uses netstat — ss not available by default</span>
+lsof<span class="w"> </span>-i<span class="w">            </span><span class="c1"># list all open network connections — works on Mac and Linux</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8080<span class="w">      </span><span class="c1"># what&#39;s using port 8080 specifically?</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Mac vs Linux</p>
+<p><code>ss</code> is the modern Linux tool — it replaced <code>netstat</code> on most distros. macOS still ships <code>netstat</code> and doesn't include <code>ss</code>. Use <code>lsof -i</code> as your go-to cross-platform option.</p>
+</div>
+<p><strong>The ufw firewall — Linux only:</strong></p>
+<p>A firewall controls what network traffic is allowed in and out of your machine. <code>ufw</code> (Uncomplicated Firewall) is the beginner-friendly Linux firewall tool:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ufw<span class="w">     </span><span class="c1"># install if not present</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span><span class="w">          </span><span class="c1"># turn it on</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w">          </span><span class="c1"># check current rules</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">22</span><span class="w">        </span><span class="c1"># allow SSH (do this BEFORE enabling if on a remote server)</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">80</span><span class="w">        </span><span class="c1"># allow HTTP</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">443</span><span class="w">       </span><span class="c1"># allow HTTPS</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>deny<span class="w"> </span><span class="m">3306</span><span class="w">       </span><span class="c1"># block MySQL from outside access</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>delete<span class="w"> </span>allow<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="c1"># remove a rule</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">If you're on a remote server</p>
+<p>Run <code>sudo ufw allow 22</code> before you run <code>sudo ufw enable</code>. If you enable the firewall without allowing SSH first, you will lock yourself out of your own server.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">macOS firewall</p>
+<p>macOS uses <code>pf</code> under the hood but you don't need to touch it directly. Go to <strong>System Settings → Network → Firewall</strong> and enable it. For most developers on Mac, this is sufficient.</p>
+</div>
+<hr />
+<h2 id="package-management">Package Management</h2>
+<p>Package managers install, update, and remove software. The concept is identical everywhere — only the tool changes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu / Debian Linux</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w">           </span><span class="c1"># refresh the list of available packages</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w">          </span><span class="c1"># upgrade all installed packages</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3<span class="w">  </span><span class="c1"># install a package</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>python3<span class="w">   </span><span class="c1"># remove a package</span>
+
+<span class="c1"># macOS (Homebrew)</span>
+brew<span class="w"> </span>update<span class="w">               </span><span class="c1"># refresh</span>
+brew<span class="w"> </span>upgrade<span class="w">              </span><span class="c1"># upgrade all</span>
+brew<span class="w"> </span>install<span class="w"> </span>python3<span class="w">      </span><span class="c1"># install</span>
+brew<span class="w"> </span>uninstall<span class="w"> </span>python3<span class="w">    </span><span class="c1"># remove</span>
+
+<span class="c1"># RHEL / Fedora / CentOS</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>python3
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>python3<span class="w">  </span><span class="c1"># older systems</span>
+</code></pre></div>
+<p>Homebrew was directly inspired by Linux package managers — it's why Mac developers feel immediately at home on Linux servers.</p>
+<p><strong>Security habit:</strong> Keep packages updated. Unpatched packages are one of the most common attack vectors on real systems.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Automatic security updates on Ubuntu</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>unattended-upgrades
+sudo<span class="w"> </span>dpkg-reconfigure<span class="w"> </span>unattended-upgrades
+</code></pre></div>
+<hr />
+<h2 id="processes-and-monitoring">Processes and Monitoring</h2>
+<p>A process is any program currently running on your system. Every terminal command, every app, every background service is a process.</p>
+<div class="highlight"><pre><span></span><code>ps<span class="w"> </span>aux<span class="w">              </span><span class="c1"># list every running process</span>
+top<span class="w">                 </span><span class="c1"># live process monitor — updates in real time (Linux and Mac)</span>
+htop<span class="w">                </span><span class="c1"># better version of top, install separately: sudo apt install htop</span>
+<span class="nb">kill</span><span class="w"> </span><span class="m">1234</span><span class="w">           </span><span class="c1"># send a stop signal to process ID 1234</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="m">1234</span><span class="w">        </span><span class="c1"># force kill — no cleanup, just stop</span>
+pkill<span class="w"> </span>python<span class="w">        </span><span class="c1"># kill all processes with &quot;python&quot; in the name</span>
+</code></pre></div>
+<p><strong>Finding what's using a port:</strong></p>
+<div class="highlight"><pre><span></span><code>lsof<span class="w"> </span>-i<span class="w"> </span>:8080<span class="w">              </span><span class="c1"># what process is using port 8080?</span>
+ss<span class="w"> </span>-tulnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">8080</span><span class="w">      </span><span class="c1"># Linux alternative</span>
+</code></pre></div>
+<p>If you see a process you don't recognize listening on a port, that's worth investigating. Unknown listeners are a red flag.</p>
+<hr />
+<h2 id="virtual-environments">Virtual Environments</h2>
+<p>This section is critical for Python developers and is <strong>identical on Linux and macOS</strong>.</p>
+<p><strong>First — understand the difference between two things people confuse constantly:</strong></p>
+<ul>
+<li><strong><code>.env</code> file</strong> — a plain text file containing environment variables like API keys. Loaded by your app at runtime. Covered in detail above.</li>
+<li><strong><code>venv</code></strong> — a Python virtual environment. A completely isolated folder containing its own Python interpreter and its own packages. Has nothing to do with <code>.env</code> files despite the similar name.</li>
+</ul>
+<p>They are completely different things. Both matter. Neither replaces the other.</p>
+<p><strong>Why you never install Python packages globally:</strong></p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w">   </span><span class="c1"># never do this outside a venv</span>
+</code></pre></div>
+<p>Installing globally means every project on your system shares the same packages. Version conflicts break things. A compromised package affects your entire machine. It's a mess that's hard to undo.</p>
+<p><strong>The right way — always use a venv:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a virtual environment inside your project folder</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+
+<span class="c1"># Activate it</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">        </span><span class="c1"># Linux and macOS</span>
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">           </span><span class="c1"># Windows</span>
+
+<span class="c1"># Your prompt will change to show (venv) — you&#39;re now isolated</span>
+<span class="o">(</span>venv<span class="o">)</span><span class="w"> </span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w">   </span><span class="c1"># installs only inside this project</span>
+
+<span class="c1"># When you&#39;re done</span>
+deactivate
+</code></pre></div>
+<p><strong>Always add these to <code>.gitignore</code>:</strong></p>
+<div class="highlight"><pre><span></span><code>venv/
+.env
+__pycache__/
+*.pyc
+</code></pre></div>
+<p>Never commit your virtual environment folder or your <code>.env</code> file to GitHub. Ever.</p>
+<div class="admonition tip">
+<p class="admonition-title">Want to go deeper?</p>
+<p>IDE security (VS Code and PyCharm hardening, extension vetting, settings sync risks), Windows-specific hardening, and enterprise managed device security are covered in full in the <strong>Secure Your Ship PDF guide</strong>.</p>
+</div>
+<hr />
+<h2 id="ricing-your-terminal-making-it-yours">Ricing Your Terminal — Making It Yours</h2>
+<p>The terminal doesn't have to look like 1995. The developer community has spent decades making it beautiful, fast, and deeply personal. "Ricing" is what people call customizing your terminal setup — themes, fonts, colors, prompts, shortcuts — until it looks and feels exactly like yours.</p>
+<p>This isn't required. Learn the basics first. Come back here when you're ready to make it home.</p>
+<p><strong>The essentials to look into:</strong></p>
+<ul>
+<li><strong>Oh-My-Zsh</strong> — a framework for Zsh that gives you themes, plugins, and a massive community of customizations. Start here: <a href="https://ohmyz.sh">ohmyz.sh</a></li>
+<li><strong>Powerlevel10k</strong> — the most popular terminal theme. Highly configurable, genuinely fast, genuinely beautiful.</li>
+<li><strong>Nerd Fonts</strong> — fonts patched with developer icons and symbols that power-user themes require. JetBrains Mono Nerd Font is a great starting point: <a href="https://www.nerdfonts.com">nerdfonts.com</a></li>
+<li><strong>iTerm2</strong> (macOS) / <strong>Alacritty</strong> (Linux) / <strong>Windows Terminal</strong> (WSL) — better terminal emulators than the system defaults. Split panes, better colors, search.</li>
+<li><strong>Aliases</strong> — shortcuts you define yourself in <code>~/.zshrc</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">gs</span><span class="o">=</span><span class="s2">&quot;git status&quot;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">gp</span><span class="o">=</span><span class="s2">&quot;git push origin main&quot;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">projects</span><span class="o">=</span><span class="s2">&quot;cd ~/projects&quot;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">activate</span><span class="o">=</span><span class="s2">&quot;source venv/bin/activate&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong>zsh-autosuggestions</strong> — suggests commands as you type based on your history</li>
+<li><strong>zsh-syntax-highlighting</strong> — colors your commands as you type so you catch typos before hitting Enter</li>
+</ul>
+<p>Look up terminal setups on Reddit's r/unixporn when you want inspiration. Fair warning: you will lose an afternoon.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © SudoChef — @sudochef — Build like you're the target. Because you are.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/commit-issues" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://instagram.com/sudochef" target="_blank" rel="noopener" title="instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
